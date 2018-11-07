@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='ajax.js' charset="UTF-8"></script>
+    <script type='text/javascript'>
+        window.onload=function(){
+            var oUser=document.getElementById('usr');
+            var oPass=document.getElementById('pwd');
+            var oBtn=document.getElementById('btn0');
+
+            oBtn.onclick=function(){
+                ajax({
+                    url: '/login',
+                    data: {usr: oUser.value,pwd: oPass.value},
+                    success: function (str){
+                        var json=eval('('+str+')');
+                        if(json.ok){
+                            alert('登录成功');
+                        }else{alert('失败'+json.msg);}
+                    }
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+    Username: <input type="text" id="usr" /><br>
+    Password: <input type="password" id="pwd" /><br>
+    <input type="button" value="GO" id="btn0" />
+</body>
+</html>
