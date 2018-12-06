@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>控制台</title>
+</head>
+<body>
+  <div class="page">
+    <% include components/top_inc.ejs %>
+    <div class="content-wrap">
+      <!-- -->
+      <div>
+        <form action="?" method="post">
+          昵称：<input type="text" name="codename" /><br>
+          学号：<input type="text" name="schoolid" /><br>
+          姓名：<input type="text" name="bioname" /><br>
+          密码：<input type="password" name="password" /><br>
+          电话：<input type="text" name="phone" /><br>
+          邮箱：<input type="text" name="email" /><br>
+          QQ号：<input type="text" name="oicq" /><br>
+          志愿：<input type="text" name="wanted" /><br>
+          技能：<br><textarea name="talent" cols="30" rows="5"></textarea><br>
+          爱好：<br><textarea name="interest" cols="30" rows="5"></textarea><br>
+          <input type="submit" value="添加" /><br>
+        </form>
+        
+      </div>
+      <table border="1" width="80%">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>CN</th>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>电话</th>
+            <th>QQ</th>
+            <th>邮箱</th>
+            <th>志愿</th>
+            <th>技能树</th>
+            <th>爱好</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% for (var i=0;i<manage.length ;i++) { %>
+          <tr>
+            <td><%manage[i].ID%></td>
+            <td><%manage[i].codename%></td>
+            <td><%manage[i].schoolid%></td>
+            <td><%manage[i].bioname%></td>
+            <td><%manage[i].phone%></td>
+            <td><%manage[i].oicq%></td>
+            <td><%manage[i].email%></td>
+            <td><%manage[i].wanted%></td>
+            <td><%manage[i].talent%></td>
+            <td><%manage[i].interest%></td>
+            <td>
+              <a href="javascript:;">修改</a>
+              <a href="#">删除</a>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <div>
+        修改弹窗
+      </div>
+    </div>     
+  </div>
+</body>
+</html>

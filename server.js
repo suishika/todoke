@@ -42,7 +42,7 @@ server.use('/', require('./route/www.js')());
 server.use('/admin/', require('./route/admin.js')());
 
 //default:static
-//server.use(static('./static/'))
+//server.use(static('./static'))
 
 
 
