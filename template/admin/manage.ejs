@@ -18,14 +18,21 @@
           电话：<input type="text" name="phone" /><br>
           邮箱：<input type="text" name="email" /><br>
           QQ号：<input type="text" name="oicq" /><br>
-          志愿：<input type="text" name="wanted" /><br>
+          志愿：
+          <select>
+              <option value =null>普通社员</option>
+              <option value ="漫研">漫研部</option>
+              <option value="CV">配音部</option>
+              <option value="COS">COS部</option>
+              <option value="组织">组织部</option>
+          </select><br>
           技能：<br><textarea name="talent" cols="30" rows="5"></textarea><br>
           爱好：<br><textarea name="interest" cols="30" rows="5"></textarea><br>
           <input type="submit" value="添加" /><br>
         </form>
         
       </div>
-      <table border="1" width="80%">
+        <table border="1" width="100%">
         <thead>
           <tr>
             <th>ID</th>
@@ -43,21 +50,21 @@
         </thead>
 
         <tbody>
-          <% for (var i=0;i<manage.length ;i++) { %>
+          <% for(var i=0;i<manage.length;i++){ %>
           <tr>
-            <td><%manage[i].ID%></td>
-            <td><%manage[i].codename%></td>
-            <td><%manage[i].schoolid%></td>
-            <td><%manage[i].bioname%></td>
-            <td><%manage[i].phone%></td>
-            <td><%manage[i].oicq%></td>
-            <td><%manage[i].email%></td>
-            <td><%manage[i].wanted%></td>
-            <td><%manage[i].talent%></td>
-            <td><%manage[i].interest%></td>
+            <td><%=manage[i].ID%></td>
+            <td><%=manage[i].codename%></td>
+            <td><%=manage[i].schoolid%></td>
+            <td><%=manage[i].bioname%></td>
+            <td><%=manage[i].phone%></td>
+            <td><%=manage[i].oicq%></td>
+            <td><%=manage[i].email%></td>
+            <td><%=manage[i].wanted%></td>
+            <td><%=manage[i].talent%></td>
+            <td><%=manage[i].interest%></td>
             <td>
-              <a href="javascript:;">修改</a>
-              <a href="#">删除</a>
+              <a href="?act=mod&id=<%=manage[i].ID%>">修改</a>
+              <a href="?act=del&id=<%=manage[i].ID%>" onclick="return confirm('救救孩子')">删除</a>
             </td>
           </tr>
           <% } %>

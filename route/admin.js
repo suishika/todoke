@@ -15,11 +15,10 @@ module.exports=function (){
     }
   });
 
-  //
+  //登录
   router.get('/login', (req, res)=>{
     res.render('admin/login.ejs', {});
   });
-
   router.post('/login', (req, res)=>{
     var schoolid=req.body.schoolid;
     var password=common.md5(req.body.password+common.MD5_SUFFIX);
@@ -48,14 +47,41 @@ module.exports=function (){
   });
 
   router.get('/manage',(req,res)=>{
-    db.query(`SELECT * FROM member_list`,(err, manage)=>{
-      if(err){
-        console.error(err);
-        res.status(500).send('database error').end();
-      }else{
-        res.render('admin/manage.ejs',{manage});
-      }
-    });
+    switch(req.query.act){
+      case 'mod':
+        db.query(`SELECT * FROM member_list WHERE ID=${req.query.id}`,(err, data)=>{
+          if(err){
+            console.error(err);
+            res.status(500).send('database error').end();
+          }else if(data.length==0){
+            res.status(404).send('account not exist').end();
+          }else{
+            res.render('admin/manage.ejs',{mod_data:data[0]});
+          }
+        })
+        break;
+      case 'del':
+        db.query(`DELETE FROM member_list WHERE ID=${req.query.id}`,(err, data)=>{
+          if(err){
+            console.error(err);
+            res.status(500).send('database error').end();
+          }else{
+            res.redirect('/admin/manage');
+          }
+        });
+        break;
+      default:
+        db.query(`SELECT * FROM member_list`,(err, manage)=>{
+          if(err){
+            console.error(err);
+            res.status(500).send('database error').end();
+          }else{
+            res.render('admin/manage.ejs',{manage});
+          }
+        });
+        break;
+    }
+
   });
 
   router.post('/manage',(req,res)=>{
