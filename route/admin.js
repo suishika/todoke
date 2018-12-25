@@ -1,7 +1,7 @@
 const express=require('express');
 const common=require('../libs/common');
 const mysql=require('mysql');
-var db=mysql.createPool({host: 'localhost',user: 'root',password: '1337', database: 'dojin_circle'});
+var db=mysql.createPool({host: '144.202.7.94',user: 'admin',password: 'pa$$w0rd', database: 'circle'});
 
 module.exports=function (){
   var router=express.Router();
